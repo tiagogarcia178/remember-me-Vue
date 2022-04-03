@@ -4,7 +4,7 @@
       <header>
         <h3>{{ title }}</h3>
         <!-- prop -->
-        <base-button mode="flat">Delete</base-button>
+        <base-button mode="flat" @click="deleteResource(id)">Delete</base-button>
       </header>
       <p>{{ description }}</p>
       <nav>
@@ -17,7 +17,8 @@
 
 <script>
 export default {
-  props: ['title', 'description', 'link'],
+  props: ['id', 'title', 'description', 'link'],
+  inject: ['deleteResource']
 };
 </script>
 
