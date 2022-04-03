@@ -1,23 +1,26 @@
 <template>
   <!-- wee only use this dialog once in one way, we don't need to make it so complex
 but in this way this dialog can be used in multiple ways -->
-  <div @click="$emit('close')"></div> <!-- in case  the user clicks outside the dialog it still closes -->
-  <dialog open>
-    <header>
-      <slot name="header">
-        <h2>{{ title }}</h2>
-        <!-- default data if anything is provided to the slot-->
-      </slot>
-    </header>
-    <section>
-      <slot> </slot>
-    </section>
-    <menu>
-      <slot name="actions">
-        <base-button @click="$emit('close')">Close</base-button>
-      </slot>
-    </menu>
-  </dialog>
+  <teleport to="body">
+    <div @click="$emit('close')"></div>
+    <!-- in case  the user clicks outside the dialog it still closes -->
+    <dialog open>
+      <header>
+        <slot name="header">
+          <h2>{{ title }}</h2>
+          <!-- default data if anything is provided to the slot-->
+        </slot>
+      </header>
+      <section>
+        <slot> </slot>
+      </section>
+      <menu>
+        <slot name="actions">
+          <base-button @click="$emit('close')">Close</base-button>
+        </slot>
+      </menu>
+    </dialog>
+  </teleport>
 </template>
 
 <script>
@@ -28,7 +31,7 @@ export default {
       required: false,
     },
   },
-  emits: ['close']
+  emits: ['close'],
 };
 </script>
 
